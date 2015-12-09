@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
 
   # logstash-core > 2.0.0.snapshot3 requires jrjackson ~> 0.3.5, which requires
   # JDK7.
-  core_upper_bound = "~> 2.0.0.snapshot3"
+  core_upper_bound = "< 3.0.0"
   if RUBY_PLATFORM == 'java'
     s.platform        = RUBY_PLATFORM
     if java.lang.System.get_property('java.version') < "1.7"   # JDK6
