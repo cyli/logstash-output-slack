@@ -79,6 +79,6 @@ And type some text in.  The same text should appear in the channel it's configur
 
 ### Installation on Logstash < 1.5
 
-Gem-installing this plugin would only work on Logstash 1.5.  For Logstash < 1.5, you could just rename `lib` in this repo to `logstash`, and then run Logstash with `--pluginpath <path_to_this_repo>.
+Gem-installing this plugin would only work on Logstash 1.5.  For Logstash < 1.5, you could just rename `lib` in this repo to `logstash`, and then run Logstash with `--pluginpath <path_to_this_repo>`.
 
 See the [flags](http://logstash.net/docs/1.4.2/flags) documentation for Logstash 1.4.
