@@ -349,7 +349,7 @@ describe LogStash::Outputs::Slack do
        #  for any non-boolean value in the options.auto_expand_(media|links) should fallbacks to false
       expected_json = {
         :text => "This message should show in slack",
-        :unfurl_links => false
+        :unfurl_links => false,
         :unfurl_media => false
       }
       
