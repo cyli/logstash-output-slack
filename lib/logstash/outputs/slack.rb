@@ -73,6 +73,12 @@ class LogStash::Outputs::Slack < LogStash::Outputs::Base
       end
     end
 
+    if @options and not @options.empty?
+      @options.each do |key, value|
+        payload_json[key] = value
+      end
+    end
+
     begin
       RestClient.post(
         @url,

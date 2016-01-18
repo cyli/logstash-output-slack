@@ -292,5 +292,62 @@ describe LogStash::Outputs::Slack do
 
       test_one_event(logstash_config, expected_json)
     end
+    
+    it  "includes an option to the request" do
+       #  for any non-boolean value in the options.auto_expand_(media|links) should fallbacks to false
+      expected_json = {
+        :text => "This message should show in slack",
+        :unfurl_links => false
+      }
+      
+      logstash_config = <<-CONFIG
+          input {
+            generator {
+              message => "This message should show in slack"
+              count => 1
+            }
+          }
+          output {
+            slack {
+              url => "http://requestb.in/r9lkbzr9"
+              options => {
+                'unfurl_links' => false
+              }
+            }
+          }
+      CONFIG
+
+      test_one_event(logstash_config, expected_json)
+    end
+    
+    it  "includes multiple options to the request" do
+       #  for any non-boolean value in the options.auto_expand_(media|links) should fallbacks to false
+      expected_json = {
+        :text => "This message should show in slack",
+        :unfurl_links => false,
+        :unfurl_media => true
+      }
+      
+      logstash_config = <<-CONFIG
+          input {
+            generator {
+              message => "This message should show in slack"
+              count => 1
+            }
+          }
+          output {
+            slack {
+              url => "http://requestb.in/r9lkbzr9"
+              options => {
+                'unfurl_links' => false,
+                'unfurl_media' => true
+              }
+            }
+          }
+      CONFIG
+
+      test_one_event(logstash_config, expected_json)
+    end
+    
   end
 end
