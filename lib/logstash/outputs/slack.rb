@@ -75,7 +75,7 @@ class LogStash::Outputs::Slack < LogStash::Outputs::Base
 
     if @options and not @options.empty?
       @options.each do |key, value|
-        payload_json[key] = value
+        payload_json["#{key}"] = value
       end
     end
 

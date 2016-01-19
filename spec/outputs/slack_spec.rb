@@ -339,7 +339,7 @@ describe LogStash::Outputs::Slack do
             slack {
               url => "http://requestb.in/r9lkbzr9"
               options => {
-                'unfurl_links' => false,
+                'unfurl_links' => false
                 'unfurl_media' => true
               }
             }
