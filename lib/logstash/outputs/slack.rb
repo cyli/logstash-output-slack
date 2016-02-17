@@ -27,6 +27,9 @@ class LogStash::Outputs::Slack < LogStash::Outputs::Base
   # Attachments array as described https://api.slack.com/docs/attachments
   config :attachments, :validate => :array
 
+  # Allow any other option that will be attached to the request
+  config :options, :validate => :hash
+
   public
   def register
     require 'rest-client'
