@@ -22,10 +22,10 @@ Gem::Specification.new do |s|
 
   s.platform = "java"
   s.add_runtime_dependency "logstash-core", "< 3.0.0", ">= 1.4.0"
-  s.add_runtime_dependency "logstash-codec-plain", "~> 2.0.0", ">= 1.0.0"
-  s.add_runtime_dependency "rest-client", '~> 1.8', ">= 1.8.0"
+  s.add_runtime_dependency "logstash-codec-plain", "< 2.1", ">= 1.0.0"
+  s.add_runtime_dependency "rest-client", "< 2.0", ">= 1.8.0"
   s.add_development_dependency "logstash-devutils", "~> 0.0.16"
-  s.add_development_dependency "logstash-filter-json", "~> 2.0.1", ">= 1.0.1"
-  s.add_development_dependency "logstash-input-generator", "~> 2.0.1", ">= 1.0.0"
-  s.add_development_dependency "webmock", "~> 1.22", ">= 1.21.0"
+  s.add_development_dependency "logstash-filter-json", "< 2.1", ">= 1.0.1"
+  s.add_development_dependency "logstash-input-generator", "< 2.1", ">= 1.0.0"
+  s.add_development_dependency "webmock", "< 2.0", ">= 1.21.0"
 end
