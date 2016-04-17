@@ -27,6 +27,9 @@ class LogStash::Outputs::Slack < LogStash::Outputs::Base
   # Attachments array as described https://api.slack.com/docs/attachments
   config :attachments, :validate => :array
 
+  # Allow any other option that will be attached to the request
+  config :options, :validate => :hash
+
   public
   def register
     require 'rest-client'
@@ -70,6 +73,12 @@ class LogStash::Outputs::Slack < LogStash::Outputs::Base
         payload_json['attachments'] = rubified['attachments']
       else
         payload_json.delete('attachments')
+      end
+    end
+
+    if @options and not @options.empty?
+      @options.each do |key, value|
+        payload_json["#{key}"] = value
       end
     end
 

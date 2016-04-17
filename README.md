@@ -27,6 +27,7 @@ output {
         icon_url => [icon url, would be overriden by icon_emoji - optional]
         format => [default is "%{message}", but used to format the text - optional]
         attachments => [an array of attachment maps as specified by the slack API - optional; if there is an "attachments" field in the event map and it is valid, it will override what is configured here, even if it's empty]
+        options => [an *hash* of other misc options that are added automatically to the request]
     }
 }
 ```
