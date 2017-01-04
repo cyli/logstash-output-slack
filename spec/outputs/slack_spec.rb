@@ -292,5 +292,87 @@ describe LogStash::Outputs::Slack do
 
       test_one_event(logstash_config, expected_json)
     end
+    
+    it  "supports disabling link expansion option" do
+      expected_json = {
+        :text => "This message should show in slack",
+        :unfurl_links => true
+      }
+      
+      logstash_config = <<-CONFIG
+          input {
+            generator {
+              message => "This message should show in slack"
+              count => 1
+            }
+          }
+          output {
+            slack {
+              url => "http://requestb.in/r9lkbzr9"
+              options => {
+                'auto_expand_links' => true
+              }
+            }
+          }
+      CONFIG
+
+      test_one_event(logstash_config, expected_json)
+    end
+
+    it  "supports disabling media expansion option" do
+      expected_json = {
+        :text => "This message should show in slack",
+        :unfurl_media => false
+      }
+      
+      logstash_config = <<-CONFIG
+          input {
+            generator {
+              message => "This message should show in slack"
+              count => 1
+            }
+          }
+          output {
+            slack {
+              url => "http://requestb.in/r9lkbzr9"
+              options => {
+                'auto_expand_media' => false
+              }
+            }
+          }
+      CONFIG
+
+      test_one_event(logstash_config, expected_json)
+    end
+
+    it  "uses automatic fallback for disabling expansion option" do
+       #  for any non-boolean value in the options.auto_expand_(media|links) should fallbacks to false
+      expected_json = {
+        :text => "This message should show in slack",
+        :unfurl_links => false,
+        :unfurl_media => false
+      }
+      
+      logstash_config = <<-CONFIG
+          input {
+            generator {
+              message => "This message should show in slack"
+              count => 1
+            }
+          }
+          output {
+            slack {
+              url => "http://requestb.in/r9lkbzr9"
+              options => {
+                'auto_expand_media' => "non boolean value"
+                'auto_expand_links' => "just another invalid value"
+              }
+            }
+          }
+      CONFIG
+
+      test_one_event(logstash_config, expected_json)
+    end
+
   end
 end
